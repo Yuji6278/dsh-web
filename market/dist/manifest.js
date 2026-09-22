@@ -61,6 +61,35 @@ window.SKIN_MANIFEST = {
       }
     },
     {
+      "id": "endfield-baker",
+      "name": "终末地 · BAKER",
+      "nameEn": "Endfield Baker",
+      "author": "基于 blue-fantasy（powerdog996 / DreamSkin 社区）改作",
+      "tagline": "《明日方舟：终末地》工业终端 · BAKER 会话界面 · 信号青与警示黄",
+      "description": "把 dsh Web GUI 改造成终末地现场终端：会话区按 BAKER 通讯界面重做（青色标头竖条、信号黄选中行、切角控制台卡片、白色胶囊输入条、磨砂灰聊天底板），其余壳层用终末地的工业语汇补齐——细网格与斜纹信号条、等宽微标签、单像素浅灰描边。浅色与深色模式共用同一套夜航终端配色。",
+      "accent": "#17c3e6",
+      "preview": {
+        "light": "assets/skins/endfield-baker/preview/light.png",
+        "dark": "assets/skins/endfield-baker/preview/dark.png"
+      },
+      "contributes": {
+        "stylesheet": "skin.css",
+        "patches": "patches.css",
+        "backgroundMedia": {
+          "light": {
+            "type": "image",
+            "src": "assets/skins/endfield-baker/assets/endfield-dark.jpg",
+            "scrim": "linear-gradient(rgba(8, 10, 12, 0.30) 0%, rgba(10, 13, 16, 0.42) 60%, rgba(12, 16, 19, 0.50) 100%)"
+          },
+          "dark": {
+            "type": "image",
+            "src": "assets/skins/endfield-baker/assets/endfield-dark.jpg",
+            "scrim": "linear-gradient(rgba(8, 10, 12, 0.30) 0%, rgba(10, 13, 16, 0.42) 60%, rgba(12, 16, 19, 0.50) 100%)"
+          }
+        }
+      }
+    },
+    {
       "id": "harbor",
       "name": "夕港",
       "nameEn": "Harbor",
