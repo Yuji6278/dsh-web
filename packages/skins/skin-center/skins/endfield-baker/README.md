@@ -17,7 +17,7 @@ hairlines.
   `preview/` (light/dark screenshots). No package.json, no build step, no
   hooks.
 - **One palette for both modes**: light and dark themes share a single
-  night-shift terminal palette; `:root` pins `color-scheme: dark` and no
+  terminal palette; `:root` pins `color-scheme: dark` and no
   `body[data-ds-dark-theme]` override exists, so both preview screenshots
   show the same treatment by construction.
 - **Point-sampled from the reference art**: page ink, row fill, chat page,

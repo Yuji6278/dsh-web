@@ -12,7 +12,7 @@ Endfield Baker（终末地 · BAKER）—— dsh web GUI 的明日方舟：终�
   原语）+ `patches.css`（L3 结构补丁，分节 0-12）+ `assets/`（标头图、卡片
   纹理、背景图）+ `preview/`（亮/暗截图）。无 package.json、无构建步骤、无
   hooks。
-- **浅深共用一套调色板**：浅色与深色主题共用同一份夜航终端配色；`:root` 钉死
+- **浅深共用一套调色板**：浅色与深色主题共用同一份终端配色；`:root` 钉死
   `color-scheme: dark`，且不存在 `body[data-ds-dark-theme]` 覆盖，因此两张
   预览截图构造上呈现同一套配色。
 - **逐点取样自原图**：页面底色、行填充、聊天页、输入条胶囊与两种信号色均从
