@@ -436,7 +436,7 @@ html[data-dsh-skin="endfield-baker"] [class*="composerStats"], html[data-dsh-ski
 
 /* ---------------------------------------------------------------- 6 浮层 --- */
 
-/* 通用弹窗外框。注意：提问窗（Mbwy4a_card）不吃这一条：它是 role=dialog 的 section，
+/* 通用弹窗外框。⚠ 提问窗（Mbwy4a_card）不吃这一条：它是 role=dialog 的 section，
    皮肤这个 4px 圆角的描边和卡片本体的圆角对不上（用户反馈的「灰色描边错位」），
    而且用户明确说「提问窗的描边直接用 DeepSeek 预设的就行，留着青色提交键已经有皮肤味了」。 */
 html[data-dsh-skin="endfield-baker"] [role="dialog"]:not([class*="Mbwy4a_card"]) {
@@ -473,7 +473,7 @@ html[data-dsh-skin="endfield-baker"] [class*="Mbwy4a_header"] {
   background-image: none !important;
   background-color: #1b1d1c !important;
 }
-/* 注意：必须连卡片一起限定：聊天页顶栏的类名里也含 "header"，
+/* ⚠ 必须连卡片一起限定：聊天页顶栏的类名里也含 "header"，
    只写 [class*="header"]::before 会把顶栏那条双青条一起删掉（上一版就是这个 bug） */
 html[data-dsh-skin="endfield-baker"] [class*="Mbwy4a_card"] [class*="Mbwy4a_header"]::before,
 html[data-dsh-skin="endfield-baker"] [class*="Mbwy4a_card"] [class*="Mbwy4a_header"]::after {
@@ -995,7 +995,7 @@ html[data-dsh-skin="endfield-baker"] [data-input-scroll]::-webkit-scrollbar-thum
    元素对应：
      .card    角色卡 458.28 × 92.99 设计 → 工作区行（projectRow）
      .subcard 子卡   435.53 × 68.95 设计 → 会话行（sessionRow）
-   * 宽度一律「左右内缩 + auto 宽」，不给死宽度：用户那边侧栏比 agent 这边窄，
+   ★ 宽度一律「左右内缩 + auto 宽」，不给死宽度：用户那边侧栏比 agent 这边窄，
      之前写死 250px 列 + 228px 行会横向溢出，把行右侧和时间截掉（还冒出横/竖滚动条）。
    高度 / 圆角 / 字号 / 装饰位置都是 calc(源站设计值 * var(--ef-bk))，对着源站 CSS 一眼能核。
 
@@ -1005,7 +1005,7 @@ html[data-dsh-skin="endfield-baker"] [data-input-scroll]::-webkit-scrollbar-thum
    角色头像不做：工作区行左侧只留源站头像框的位置当占位（既不画框也不放头像，只放应用自己的文件夹图标）。
    边框按用户要求换回本皮肤上一版的灰线 --ef-line（源站自己那圈描边不好看），圆角仍用源站的小圆角。
 
-   * 坑：绝对定位的伪元素画在内容层之上 → 内容（图标/标题/时间）必须显式 position/z-index，
+   ★ 坑：绝对定位的伪元素画在内容层之上 → 内容（图标/标题/时间）必须显式 position/z-index，
      否则选中态的黄色块会把文字盖住；选中态文字还要另写一条带 [aria-selected="true"] 的规则。 */
 
 /* 名录列宽度跟应用给的一致（原来加到 250px，会横向溢出） */
@@ -1460,7 +1460,7 @@ html[data-dsh-skin="endfield-baker"] [class*="VOzbGW_panel"] :is([class*="kKk9aW
 
 /* 插件配置那几张卡（网页搜索 / Subagent / Agent 循环 / 终端 / ego-browser…）点开后，
    展开的内容区没有自己的框 —— 补上整圈（与卡片矩形一致），收起时回到常态。
-   注意：以前这里写成通用的 [aria-expanded="true"]，把宠物 / 创意工坊 / 归档管理里
+   ⚠ 以前这里写成通用的 [aria-expanded="true"]，把宠物 / 创意工坊 / 归档管理里
    所有带这个属性的元素都框了一遍（用户点名的误加蓝边），现在改成按卡片结构限定。 */
 /* 展开态：整张卡只保留一圈蓝框（用卡片自己的 border），内容区不再套第二个框；
    头部与内容之间补一条蓝线当分隔（= 用户要的「整个大外圈 + 中间一行」）。 */
@@ -1790,6 +1790,20 @@ html[data-dsh-skin="endfield-baker"] .dsh-ego-side-tab {
    不能用 [class*=...] 通配，否则整条容器都被染蓝（用户报过一次） */
 html[data-dsh-skin="endfield-baker"] .dsh-ego-side-tab:hover,
 html[data-dsh-skin="endfield-baker"] .dsh-ego-side-tab.active:hover {
+  background: var(--ef-cyan-bright) !important;
+}
+/* 插件-插件管理-删除确认框的【确认删除/确认卸载】键：
+   应用规则 `.ZsMDKq_dangerButton { background: var(--dsw-alias-label-danger) !important }`，
+   皮肤没映射 --dsw-alias-label-danger → 变量未定义，底色按「无效期计算」退成透明，
+   露出深色弹窗底；文字又被本节 _primary 的黑字规则盖住 → 黑字压深底（用户报的 bug）。
+   显式给亮蓝底（--ef-cyan，与发送键/主按钮同色），黑字保留。 */
+html[data-dsh-skin="endfield-baker"] button[class*="_primary_"][class*="dangerButton"] {
+  background: var(--ef-cyan) !important;
+  background-image: none !important;
+  border-color: var(--ef-cyan) !important;
+  color: #0b1416 !important;
+}
+html[data-dsh-skin="endfield-baker"] button[class*="_primary_"][class*="dangerButton"]:hover:not(:disabled) {
   background: var(--ef-cyan-bright) !important;
 }
 
